@@ -13,12 +13,14 @@ class Neural_Network
 	public:
 		Neural_Network();
 		Neural_Network(int x, int *shape, float (*func)(float f));
-		//void add_layer();
-		float* forward_prop(float *inputs);
+		//void addLayer();
+		void setInputs(float *x);
+		float* forwardProp();
 
 	private:
 		int num_layers;
 		int *shape;
+		float *inputs;
 		float *outputs;
 		Layer **layers;
 };

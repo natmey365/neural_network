@@ -2,12 +2,12 @@
 
 #include "neural_network.h"
 
-Neural_Network::Neural_Network() : num_layers(0)
+Neural_Network::Neural_Network() : num_layers(0), outputs(NULL)
 {
 	
 }
 
-Neural_Network::Neural_Network(int x, int *y, float (*func)(float f)) : num_layers(x-1), shape(y)
+Neural_Network::Neural_Network(int x, int *y, float (*func)(float f)) : num_layers(x-1), shape(y), outputs(NULL)
 {	
 	layers = new Layer*[num_layers];
 
@@ -15,7 +15,7 @@ Neural_Network::Neural_Network(int x, int *y, float (*func)(float f)) : num_laye
 		layers[i] = new Layer(y[i+1], y[i], func);
 }
 
-/*void Neural_Network::add_layer()
+/*void Neural_Network::addLayer()
 {
 	num_layers++;
 	Layer **temp = new Layer*[num_layers];
@@ -28,10 +28,15 @@ Neural_Network::Neural_Network(int x, int *y, float (*func)(float f)) : num_laye
 	layers = temp;
 }*/
 
-float* Neural_Network::forward_prop(float *inputs)
+void Neural_Network::setInputs(float *x)
 {
-	//if(outputs != NULL)
-	//	delete outputs;
+	inputs = x;
+}
+
+float* Neural_Network::forwardProp()
+{
+	if(outputs != NULL)
+		delete outputs;
 	outputs = new float[shape[num_layers]];
 	layers[0]->forward_prop(inputs);
 	for(int i=1; i<num_layers; i++)

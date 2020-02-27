@@ -23,9 +23,11 @@ int main(void)
 	//auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 	//std::cout << duration.count() << std::endl;
 
+	nn.setInputs(inputs);
+
 	auto start = std::chrono::high_resolution_clock::now();
 	//std::cout << nn.forward_prop(inputs)[0] << std::endl;
-	nn.forward_prop(inputs)[0];
+	nn.forwardProp()[0];
 	auto stop = std::chrono::high_resolution_clock::now();
  	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
  	std::cout << duration.count() << std::endl;
