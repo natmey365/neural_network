@@ -4,9 +4,6 @@
 
 Layer::Layer(int x, int y, float (*func)(float f)) : size(x), prev_layer_size(y)
 {
-	// seed rand only once in main function
-	//srand(time(NULL));
-
 	perceptrons = new Perceptron*[size];
 	weights = new float*[size];
 	biases = new float[size];
