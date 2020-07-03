@@ -1,4 +1,5 @@
 CXX=g++
+VPATH = src:inc
 SRC=src
 INC=inc
 BLD=build
@@ -7,8 +8,8 @@ SRCS=${SRC}/%.cpp
 INCS=${INC}/%.h
 OBJS=${BLD}/
 
-main: ${OBJS} ${SRCS} ${INCS}
-	${CXX} ${CXXFLAGS} -o $@ $^
+main: ${OBJS}
+	${CXX} ${CXXFLAGS} -o $@ $<
 
 ${BLD}/%.o: ${SRCS}
 	${CXX} ${CXXFLAGS} -c -o $@ $<
