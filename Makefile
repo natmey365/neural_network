@@ -1,18 +1,20 @@
-CXX=g++
-VPATH = src:inc
-SRC=src
-INC=inc
-BLD=build
-CXXFLAGS=-Wall -I${INC}
-SRCS=${SRC}/%.cpp
-INCS=${INC}/%.h
-OBJS=${BLD}/
+SRC_DIR   := ./src
+INC_DIR   := ./inc
+OBJ_DIR   := ./obj
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
+LDFLAGS   :=
+CPPFLAGS  :=
+CXXFLAGS  :=
 
-main: ${OBJS}
-	${CXX} ${CXXFLAGS} -o $@ $<
+.PHONY: clean
 
-${BLD}/%.o: ${SRCS}
-	${CXX} ${CXXFLAGS} -c -o $@ $<
+main: $(OBJ_FILES)
+	g++ $(LDFLAGS) -o $@ $^
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp #$(INC_DIR)/%.h
+	@mkdir -p obj
+	g++ $(CPPFLAGS) $(CXXFLAGS) -I$(INC_DIR) -c -o $@ $<
 
 clean:
-	rm -rf *.o build/*.o main
+	rm -rf ./obj/ ./main
