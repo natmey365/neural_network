@@ -7,6 +7,10 @@ Neural_Network::Neural_Network() : num_layers(0), outputs(NULL)
 	
 }
 
+//                                 Number of layers - size of y - input and output layers included
+//                                 |       Shape of Network - each element is the size of the corresponding layer
+//                                 |       |          Activation Function
+//                                 |       |          |
 Neural_Network::Neural_Network(int x, int *y, float (*func)(float f)) : num_layers(x-1), shape(y), outputs(NULL)
 {	
 	layers = new Layer*[num_layers];
