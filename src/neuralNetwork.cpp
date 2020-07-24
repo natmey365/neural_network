@@ -1,8 +1,8 @@
 // C++ file defining the Neural Network class
 
-#include "neural_network.h"
+#include "neuralNetwork.h"
 
-Neural_Network::Neural_Network() : num_layers(0), outputs(NULL)
+NeuralNetwork::NeuralNetwork() : num_layers(0), outputs(NULL)
 {
 	
 }
@@ -11,7 +11,7 @@ Neural_Network::Neural_Network() : num_layers(0), outputs(NULL)
 //                                 |       Shape of Network - each element is the size of the corresponding layer
 //                                 |       |          Activation Function
 //                                 |       |          |
-Neural_Network::Neural_Network(int x, int *y, float (*func)(float f)) : num_layers(x-1), shape(y), outputs(NULL)
+NeuralNetwork::NeuralNetwork(int x, int *y, float (*func)(float f)) : num_layers(x-1), shape(y), outputs(NULL)
 {	
 	layers = new Layer*[num_layers];
 
@@ -19,7 +19,7 @@ Neural_Network::Neural_Network(int x, int *y, float (*func)(float f)) : num_laye
 		layers[i] = new Layer(y[i+1], y[i], func);
 }
 
-/*void Neural_Network::addLayer()
+/*void NeuralNetwork::addLayer()
 {
 	num_layers++;
 	Layer **temp = new Layer*[num_layers];
@@ -32,12 +32,12 @@ Neural_Network::Neural_Network(int x, int *y, float (*func)(float f)) : num_laye
 	layers = temp;
 }*/
 
-void Neural_Network::setInputs(float *x)
+void NeuralNetwork::setInputs(float *x)
 {
 	inputs = x;
 }
 
-float* Neural_Network::forwardProp()
+float* NeuralNetwork::forwardProp()
 {
 	if(outputs != NULL)
 		delete outputs;

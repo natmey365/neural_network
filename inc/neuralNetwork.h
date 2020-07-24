@@ -1,18 +1,18 @@
 // C++ header file defining the Neural_Network class
 
-#ifndef NEURAL_NETWORK_H
-#define NEURAL_NETWORK_H
+#ifndef NEURALNETWORK_H
+#define NEURALNETWORK_H
 
 #include <iostream>
 #include "layer.h"
 #include "perceptron.h"
 #include "activations.h"
 
-class Neural_Network
+class NeuralNetwork
 {
 	public:
-		Neural_Network();
-		Neural_Network(int x, int *shape, float (*func)(float f));
+		NeuralNetwork();
+		NeuralNetwork(int x, int *shape, float (*func)(float f));
 		//void addLayer();
 		void setInputs(float *x);
 		float* forwardProp();
