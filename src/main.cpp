@@ -1,13 +1,6 @@
-#include <iostream>
-#include <stdlib.h>
-#include <time.h>
-#include <chrono>
-#include "neural_network.h"
-#include "layer.h"
-#include "perceptron.h"
-#include "activations.h"
+#include "main.h"
 
-int main(void)
+int main(int argc, char* argv[])
 {
 	srand(time(NULL));
 
@@ -18,7 +11,7 @@ int main(void)
 		inputs[i] = (float)rand() / RAND_MAX;
 
 	//auto start = std::chrono::high_resolution_clock::now();
-	Neural_Network nn(num_layers, shape, &sigmoid);
+	NeuralNetwork nn(num_layers, shape, &sigmoid);
 	//auto stop = std::chrono::high_resolution_clock::now();
 	//auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 	//std::cout << duration.count() << std::endl;
