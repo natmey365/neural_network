@@ -11,11 +11,9 @@ OBJ_FILES  := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 #======================================================
 # Compiler and flags
 #======================================================
-CXX        :=
 CPP        := g++
 LDFLAGS    :=
-CPPFLAGS   :=
-CXXFLAGS   :=
+CPPFLAGS   := -Wall -I$(INC_DIR)
 
 #======================================================
 # Targets
@@ -26,7 +24,7 @@ $(EXECUTABLE): $(OBJ_FILES)
 	$(CPP) $(LDFLAGS) -o $@ $^
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC_DIR)/%.h | $(OBJ_DIR)
-	$(CPP) $(CPPFLAGS) $(CXXFLAGS) -I$(INC_DIR) -c -o $@ $<
+	$(CPP) $(CPPFLAGS) -c -o $@ $<
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
