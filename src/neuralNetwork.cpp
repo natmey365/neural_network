@@ -2,40 +2,38 @@
 
 #include "neuralNetwork.h"
 
-NeuralNetwork::NeuralNetwork() : numLayers(0), outputs(NULL)
-{
-	
-}
+NeuralNetwork::NeuralNetwork() : numLayers(0)
+{}
 
 //                                 Number of layers - size of y - input and output layers included
 //                                 |       Shape of Network - each element is the size of the corresponding layer
 //                                 |       |          Activation Function
 //                                 |       |          |
-NeuralNetwork::NeuralNetwork(int x, int *y, float (*func)(float f)) : numLayers(x-1), shape(y), outputs(NULL)
-{	
-	layers = new Layer[numLayers];
+NeuralNetwork::NeuralNetwork(int x, int *y, float (*func)(float f)) : numLayers(x)
+{
+	shape = new int[numLayers];
+	memcpy(shape, y, numLayers);
+	layers = new Layer[numLayers-1];
 
-	for(int i = 0; i < numLayers; i++)
+	for(int i = 0; i < numLayers-1; i++)
 	{
 		layers[i].set(y[i+1], y[i], func);
 	}
 }
 
-void NeuralNetwork::setInputs(float *x)
+NeuralNetwork::~NeuralNetwork()
 {
-	inputs = x;
+	delete []shape;
+	delete []layers;
 }
 
-float* NeuralNetwork::forwardProp()
+int NeuralNetwork::forwardProp(float* inputs, float* outputs)
 {
-	if(outputs != NULL)
-		delete outputs;
-	outputs = new float[shape[numLayers]];
 	layers[0].forwardProp(inputs);
 	for(int i=1; i<numLayers; i++)
 	{
 		layers[i].forwardProp(layers[i-1].getOutputs());
 	}
-	outputs = layers[numLayers-1].getOutputs();
-	return outputs;
+	memcpy(outputs, layers[numLayers-1].getOutputs(), shape[numLayers-1]);
+	return 0;
 }
