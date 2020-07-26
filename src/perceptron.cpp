@@ -5,9 +5,9 @@
 Perceptron::Perceptron()
 {}
 
-Perceptron::Perceptron(float (*func)(float f)) : activation(func)
+Perceptron::Perceptron(float (*func)(float f))
 {
-	
+	this->set(func);
 }
 
 float Perceptron::calculate(float *inputs, float *weights, float bias, int size)
@@ -22,7 +22,7 @@ float Perceptron::calculate(float *inputs, float *weights, float bias, int size)
 	return activation(output + bias);
 }
 
-int Perceptron::setActFunc(float (*func)(float f))
+int Perceptron::set(float (*func)(float f))
 {
 	activation = func;
 	return 0;

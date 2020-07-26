@@ -19,13 +19,14 @@ int Layer::set(int x, int y, float (*func)(float f))
 	biases        = new float[size];
 	for(int i = 0; i < size; i++)
 	{
-	        perceptrons[i].setActFunc(func);
+	        perceptrons[i].set(func);
 	        weights[i] = new float[prevLayerSize];
 	        biases[i]  = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
 	        for(int j  = 0; j < prevLayerSize; j++)
 	                weights[i][j] = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
 	}
 	outputs = new float[size];
+	return 0;
 }
 
 void Layer::forwardProp(float *inputs)
