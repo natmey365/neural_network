@@ -11,19 +11,21 @@
 class Layer
 {
 	public:
+		Layer();
 		Layer(int x, int y, float (*func)(float f));
-		void forward_prop(float *inputs);
-		float* get_outputs();
-		int get_size();
+
+		void        forwardProp(float* inputs);
+		float*      getOutputs();
+		int         getSize();
+		int         set(int x, int y, float (*func)(float f));
 
 	private:
-		int size;
-		int prev_layer_size;
-		float **weights;
-		float *biases;
-		float *outputs;
-
-		Perceptron **perceptrons;
+		int         size;
+		int         prevLayerSize;
+		float**     weights;
+		float*      biases;
+		float*      outputs;
+		Perceptron* perceptrons;
 };
 
 #endif

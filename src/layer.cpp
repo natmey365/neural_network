@@ -2,36 +2,57 @@
 
 #include "layer.h"
 
-Layer::Layer(int x, int y, float (*func)(float f)) : size(x), prev_layer_size(y)
+Layer::Layer()
+{}
+
+Layer::Layer(int x, int y, float (*func)(float f)) : size(x), prevLayerSize(y)
 {
-	perceptrons = new Perceptron*[size];
-	weights = new float*[size];
-	biases = new float[size];
+	perceptrons = new Perceptron[size];
+	weights     = new float*[size];
+	biases      = new float[size];
 	for(int i = 0; i < size; i++)
 	{
-		perceptrons[i] = new Perceptron(func);
-		weights[i] = new float[prev_layer_size];
-		biases[i] = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
-		for(int j = 0; j < prev_layer_size; j++)
+		perceptrons[i].setActFunc(func);
+		weights[i] = new float[prevLayerSize];
+		biases[i]  = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
+		for(int j  = 0; j < prevLayerSize; j++)
 			weights[i][j] = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
 	}
 	outputs = new float[size];
 }
 
-void Layer::forward_prop(float *inputs)
+int Layer::set(int x, int y, float (*func)(float f))
+{
+	size          = x;
+	prevLayerSize = y;
+	perceptrons   = new Perceptron[size];
+	weights       = new float*[size];
+	biases        = new float[size];
+	for(int i = 0; i < size; i++)
+	{
+	        perceptrons[i].setActFunc(func);
+	        weights[i] = new float[prevLayerSize];
+	        biases[i]  = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
+	        for(int j  = 0; j < prevLayerSize; j++)
+	                weights[i][j] = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
+	}
+	outputs = new float[size];
+}
+
+void Layer::forwardProp(float *inputs)
 {
 	for(int i=0; i<size; i++)
 	{
-		outputs[i] = perceptrons[i]->calculate(inputs, weights[i], biases[i], prev_layer_size);
+		outputs[i] = perceptrons[i].calculate(inputs, weights[i], biases[i], prevLayerSize);
 	}
 }
 
-float* Layer::get_outputs()
+float* Layer::getOutputs()
 {
 	return outputs;
 }
 
-int Layer::get_size()
+int Layer::getSize()
 {
 	return size;
 }

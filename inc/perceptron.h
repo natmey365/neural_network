@@ -12,6 +12,7 @@ class Perceptron
 		Perceptron();
 		Perceptron(float (*func)(float f));
 		float calculate(float *inputs, float *weights, float bias, int size);
+		int setActFunc(float (*func)(float f));
 
 	private:
 		float (*activation)(float f);
