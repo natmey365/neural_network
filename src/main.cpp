@@ -1,3 +1,5 @@
+// Top level C++ file
+
 #include "main.h"
 
 int main(int argc, char* argv[])
@@ -11,18 +13,18 @@ int main(int argc, char* argv[])
 	for(int i = 0; i < shape[0]; i++)
 		inputs[i] = (float)rand() / RAND_MAX;
 
-	//auto start = std::chrono::high_resolution_clock::now();
 	NeuralNetwork nn(numLayers, shape, &sigmoid);
-	//auto stop = std::chrono::high_resolution_clock::now();
-	//auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-	//std::cout << duration.count() << std::endl;
-
-	nn.setInputs(inputs);
 
 	auto start = std::chrono::high_resolution_clock::now();
-	//std::cout << nn.forward_prop(inputs)[0] << std::endl;
-	nn.forwardProp()[0];
+	nn.forwardProp(inputs, outputs);
 	auto stop = std::chrono::high_resolution_clock::now();
  	auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
- 	std::cout << duration.count() << std::endl;
+ 	std::cout << duration.count() << " uSeconds" << std::endl;
+	for(int i=0; i<shape[numLayers-1]; i++)
+	{
+		std::cout << outputs[i] << std::endl;
+	}
+
+	delete[] inputs;
+	delete[] outputs;
 }

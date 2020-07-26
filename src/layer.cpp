@@ -10,6 +10,18 @@ Layer::Layer(int x, int y, float (*func)(float f))
 	this->set(x, y, func);
 }
 
+Layer::~Layer()
+{
+	for(int i=0; i<size; i++)
+	{
+		delete[] weights[i];
+	}
+	delete[] weights;
+	delete[] biases;
+	delete[] outputs;
+	delete[] perceptrons;
+}
+
 int Layer::set(int x, int y, float (*func)(float f))
 {
 	size          = x;
@@ -29,12 +41,13 @@ int Layer::set(int x, int y, float (*func)(float f))
 	return 0;
 }
 
-void Layer::forwardProp(float *inputs)
+int Layer::forwardProp(float *inputs)
 {
 	for(int i=0; i<size; i++)
 	{
 		outputs[i] = perceptrons[i].calculate(inputs, weights[i], biases[i], prevLayerSize);
 	}
+	return 0;
 }
 
 float* Layer::getOutputs()

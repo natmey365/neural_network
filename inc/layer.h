@@ -13,8 +13,9 @@ class Layer
 	public:
 		Layer();
 		Layer(int x, int y, float (*func)(float f));
+		~Layer();
 
-		void        forwardProp(float* inputs);
+		int         forwardProp(float* inputs);
 		float*      getOutputs();
 		int         getSize();
 		int         set(int x, int y, float (*func)(float f));
