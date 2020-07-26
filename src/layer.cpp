@@ -5,20 +5,9 @@
 Layer::Layer()
 {}
 
-Layer::Layer(int x, int y, float (*func)(float f)) : size(x), prevLayerSize(y)
+Layer::Layer(int x, int y, float (*func)(float f))
 {
-	perceptrons = new Perceptron[size];
-	weights     = new float*[size];
-	biases      = new float[size];
-	for(int i = 0; i < size; i++)
-	{
-		perceptrons[i].setActFunc(func);
-		weights[i] = new float[prevLayerSize];
-		biases[i]  = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
-		for(int j  = 0; j < prevLayerSize; j++)
-			weights[i][j] = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
-	}
-	outputs = new float[size];
+	this->set(x, y, func);
 }
 
 int Layer::set(int x, int y, float (*func)(float f))
