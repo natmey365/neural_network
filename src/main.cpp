@@ -4,8 +4,6 @@
 
 int main(int argc, char* argv[])
 {
-	srand(time(NULL));
-
 	int numLayers = 4;
 	int shape[4] = {42*3, 42*3*3, 42*3*3, 1};
 	float* inputs  = new float[shape[0]];

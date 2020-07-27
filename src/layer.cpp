@@ -24,6 +24,7 @@ Layer::~Layer()
 
 int Layer::set(int x, int y, float (*func)(float f))
 {
+	srand(time(NULL));
 	size          = x;
 	prevLayerSize = y;
 	perceptrons   = new Perceptron[size];
