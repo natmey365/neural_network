@@ -23,8 +23,8 @@ NeuralNetwork::NeuralNetwork(int _numLayers, int* _shape, float (*func)(float f)
 
 NeuralNetwork::~NeuralNetwork()
 {
-	//delete []shape;
-	//delete []layers;
+	delete []shape;
+	delete []layers;
 }
 
 int NeuralNetwork::forwardProp(float* _inputs, float* _outputs)
