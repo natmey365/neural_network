@@ -12,7 +12,7 @@ Layer::Layer(int x, int y, float (*func)(float f))
 
 Layer::~Layer()
 {
-	for(int i=0; i<size; i++)
+/*	for(int i=0; i<size; i++)
 	{
 		delete[] weights[i];
 	}
@@ -20,7 +20,7 @@ Layer::~Layer()
 	delete[] biases;
 	delete[] outputs;
 	delete[] perceptrons;
-}
+*/}
 
 int Layer::set(int x, int y, float (*func)(float f))
 {
