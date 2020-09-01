@@ -4,6 +4,7 @@
 #define NEURALNETWORK_H
 
 #include <iostream>
+#include <string.h>
 #include "layer.h"
 #include "perceptron.h"
 #include "activations.h"
