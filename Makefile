@@ -1,33 +1,69 @@
 #======================================================
 # Files and directories
 #======================================================
-EXECUTABLE := main
-SRC_DIR    := src
-INC_DIR    := inc
-OBJ_DIR    := obj
-SRC_FILES  := $(wildcard $(SRC_DIR)/*.cpp)
-OBJ_FILES  := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
+LIB          := lib_neural_network.a
+SRC_DIR      := src
+INC_DIR      := inc
+TEST_DIR     := test
+OBJ_DIR      := obj
+
+SRC_FILES    := $(wildcard $(SRC_DIR)/*.cpp)
+INC_FILES    := $(wildcard $(INC_DIR)/*.h)
+OBJS         := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 #======================================================
-# Compiler and flags
+# Compiler, Archiver, and flags
 #======================================================
-CPP        := g++
-LDFLAGS    :=
-CPPFLAGS   := -Wall -I$(INC_DIR)
+CPP            := g++
+COMPILE_FLAGS  := -Wall -I$(INC_DIR)
+AR             := ar rcs
 
 #======================================================
 # Targets
 #======================================================
-.PHONY: clean
+.PHONY: clean test
 
-$(EXECUTABLE): $(OBJ_FILES)
-	$(CPP) $(LDFLAGS) -o $@ $^
+all: $(LIB) test
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC_DIR)/%.h | $(OBJ_DIR)
-	$(CPP) $(CPPFLAGS) -c -o $@ $<
+#=========
+# Library
+#=========
+lib: $(LIB)
+neural_network: $(LIB)
+
+$(LIB): lib_deps $(OBJS)
+	@echo "============================================="; \
+	 echo "= Building $(LIB)             ="; \
+	 echo "============================================="
+	$(AR) $@ $(OBJS)
+
+lib_deps:
+
+$(OBJ_DIR)/%.o: src/%.cpp inc/%.h | $(OBJ_DIR)
+	$(CPP) $(COMPILE_FLAGS) -c -o $@ $<
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	mkdir -p $@
 
+compile: $(OBJS)
+
+#=========
+# Test
+#=========
+test:
+	@echo "============================================"; \
+	 echo "= Running Tests                            ="; \
+	 echo "============================================"
+	$(MAKE) -C $(TEST_DIR)
+
+#=========
+# Clean
+#=========
 clean:
-	rm -rf $(OBJ_DIR)/* $(EXECUTABLE)
+	$(MAKE) -C $(TEST_DIR) clean
+	rm -rf $(OBJ_DIR)
+
+#======================================================
+# Testing
+#======================================================
+
