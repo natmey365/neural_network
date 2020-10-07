@@ -31,7 +31,7 @@ all: $(LIB) test
 lib: $(LIB)
 neural_network: $(LIB)
 
-$(LIB): lib_deps $(OBJS)
+$(LIB): lib_deps lib_objs
 	@echo "============================================="; \
 	 echo "= Building $(LIB)             ="; \
 	 echo "============================================="
@@ -45,7 +45,11 @@ $(OBJ_DIR)/%.o: src/%.cpp inc/%.h | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $@
 
-compile: $(OBJS)
+lib_objs:
+	@echo "============================================="; \
+	 echo "= Compiling $(LIB) objects      ="; \
+	 echo "============================================="
+	$(MAKE) $(OBJS)
 
 #=========
 # Test
