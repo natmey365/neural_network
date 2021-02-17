@@ -1,5 +1,19 @@
-test/bin/
-obj/
-*.o
-*.swp
-*.a
+# ignore everything by default
+*
+
+# always track .gitignore
+!**/.gitignore
+
+# Allowing the following directories use !/<pattern>/
+!/inc/
+!/src/
+!/test/
+!/test/inc/
+!test/src/
+
+# Allowing the following files use !/<pattern>
+!/README.md
+!/**/Makefile
+!/**/inc/*.h
+!/**/src/*.cpp
+
