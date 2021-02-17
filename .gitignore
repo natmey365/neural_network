@@ -1,19 +1,17 @@
 # ignore everything by default
 *
 
-# always track .gitignore
-!**/.gitignore
-
 # Allowing the following directories use !/<pattern>/
 !/inc/
 !/src/
 !/test/
 !/test/inc/
-!test/src/
+!/test/src/
 
 # Allowing the following files use !/<pattern>
 !/README.md
-!/**/Makefile
-!/**/inc/*.h
-!/**/src/*.cpp
+!**/.gitignore
+!**/Makefile
+!**/inc/*.h
+!**/src/*.cpp
 
