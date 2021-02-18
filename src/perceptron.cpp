@@ -5,25 +5,50 @@
 Perceptron::Perceptron()
 {}
 
-Perceptron::Perceptron(float (*func)(float f))
+Perceptron::Perceptron(int numInputs_,                              float (*activationFunc_)(float f)) : numInputs(numInputs_)
 {
-	this->set(func);
+	this->instantiateWeights();
+	this->setActivationFunc(activationFunc_);
 }
 
-float Perceptron::calculate(float *inputs, float *weights, float bias, int size)
+Perceptron::Perceptron(int numInputs_, float bias_,float* weights_, float (*activationFunc_)(float f)) : numInputs(numInputs_)
 {
-	float output = 0;
+	this->instantiateWeights();
+	this->setBias(bias_);
+	this->setWeights(weights_);
+	this->setActivationFunc(activationFunc_);
+}
 
-	for(int i = 0; i < size; i++)
+int Perceptron::instantiateWeights()
+{
+	weights = new float[numInputs];
+}
+
+int Perceptron::setBias(float bias_)
+{
+	bias = bias_;
+}
+
+int Perceptron::setWeights(float* weights_)
+{
+	for(int i=0; i<numInputs; i++)
 	{
-		output += inputs[i] * weights[i];
+		weights[i] = weights_[i];
 	}
-
-	return activation(output + bias);
+	return 0;
 }
 
-int Perceptron::set(float (*func)(float f))
+int Perceptron::setActivationFunc(float (*activationFunc_)(float f))
 {
-	activation = func;
-	return 0;
+	activationFunc = activationFunc_;
+}
+
+float Perceptron::forwardProp(float* inputs)
+{
+	float sum = bias;
+	for(int i=0; i<numInputs; i++)
+	{
+		sum += inputs[i] * weights[i];
+	}
+	return activationFunc(sum);
 }

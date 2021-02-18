@@ -4,19 +4,28 @@
 #define PERCEPTRON_H
 
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 #include "activations.h"
 
 class Perceptron
 {
 	public:
 		Perceptron();
-		Perceptron(float (*func)(float f));
+		Perceptron(int numInputs_,                               float (*activationFunc_)(float f));
+		Perceptron(int numInputs_, float bias_, float* weights_, float (*activationFunc_)(float f));
 
-		float calculate(float *inputs, float *weights, float bias, int size);
-		int   set(float (*func)(float f));
+		int   instantiateWeights();
+		int   setBias(float bias_);
+		int   setWeights(float* weights_);
+		int   setActivationFunc(float (*activationFunc_)(float f));
+		float forwardProp(float* inputs);
 
 	private:
-		float (*activation)(float f);
+		int    numInputs;
+		float  bias;
+		float* weights;
+		float  (*activationFunc)(float f);
 };
 
 #endif
