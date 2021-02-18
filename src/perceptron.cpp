@@ -7,21 +7,16 @@ Perceptron::Perceptron()
 
 Perceptron::Perceptron(int numInputs_,                              float (*activationFunc_)(float f)) : numInputs(numInputs_)
 {
-	this->instantiateWeights();
+	weights = new float[numInputs];
 	this->setActivationFunc(activationFunc_);
 }
 
 Perceptron::Perceptron(int numInputs_, float bias_,float* weights_, float (*activationFunc_)(float f)) : numInputs(numInputs_)
 {
-	this->instantiateWeights();
+	weights = new float[numInputs];
 	this->setBias(bias_);
 	this->setWeights(weights_);
 	this->setActivationFunc(activationFunc_);
-}
-
-int Perceptron::instantiateWeights()
-{
-	weights = new float[numInputs];
 }
 
 int Perceptron::setBias(float bias_)

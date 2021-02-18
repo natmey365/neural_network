@@ -15,7 +15,6 @@ class Perceptron
 		Perceptron(int numInputs_,                               float (*activationFunc_)(float f));
 		Perceptron(int numInputs_, float bias_, float* weights_, float (*activationFunc_)(float f));
 
-		int   instantiateWeights();
 		int   setBias(float bias_);
 		int   setWeights(float* weights_);
 		int   setActivationFunc(float (*activationFunc_)(float f));
