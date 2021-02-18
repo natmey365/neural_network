@@ -27,7 +27,8 @@ int testSigmoid()
 					0.9820137900379084419732,	//  4
 					0.9933071490757151444406	//  5
 	};
-	std::cout << sigmoid<float>(1) << std::endl;
+	float i = 1;
+	std::cout << sigmoid(i) << std::endl;
 	/*
 	for(int i=0; i<19; i++)
 	{
