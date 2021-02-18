@@ -9,6 +9,7 @@
 
 #include "neuralNetwork.h"
 
-int   main(int argc, char* argv[]);
+int testSigmoid();
+int main(int argc, char* argv[]);
 
 #endif
