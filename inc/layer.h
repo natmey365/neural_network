@@ -26,7 +26,7 @@ class Layer
 		float**     weights;
 		float*      biases;
 		float*      outputs;
-		Perceptron* perceptrons;
+		Perceptron<float>* perceptrons;
 };
 
 #endif

@@ -8,23 +8,23 @@
 #include <time.h>
 #include "activations.h"
 
-class Perceptron
+template <typename T> class Perceptron
 {
 	public:
 		Perceptron();
-		Perceptron(int numInputs_,                               float (*activationFunc_)(float f));
-		Perceptron(int numInputs_, float bias_, float* weights_, float (*activationFunc_)(float f));
+		Perceptron(int numInputs_,                       T (*activationFunc_)(T x));
+		Perceptron(int numInputs_, T bias_, T* weights_, T (*activationFunc_)(T x));
 
-		int   setBias(float bias_);
-		int   setWeights(float* weights_);
-		int   setActivationFunc(float (*activationFunc_)(float f));
-		float forwardProp(float* inputs);
+		int   setBias(T bias_);
+		int   setWeights(T* weights_);
+		int   setActivationFunc(T (*activationFunc_)(T x));
+		T forwardProp(T* inputs_);
 
 	private:
 		int    numInputs;
-		float  bias;
-		float* weights;
-		float  (*activationFunc)(float f);
+		T  bias;
+		T* weights;
+		T  (*activationFunc)(T x);
 };
 
 #endif

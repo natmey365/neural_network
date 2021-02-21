@@ -2,29 +2,30 @@
 
 #include "perceptron.h"
 
-Perceptron::Perceptron()
+template <typename T> Perceptron<T>::Perceptron()
 {}
 
-Perceptron::Perceptron(int numInputs_,                              float (*activationFunc_)(float f)) : numInputs(numInputs_)
+template <typename T> Perceptron<T>::Perceptron(int numInputs_,                       T (*activationFunc_)(T x)) : numInputs(numInputs_)
 {
-	weights = new float[numInputs];
+	weights = new T[numInputs];
 	this->setActivationFunc(activationFunc_);
 }
 
-Perceptron::Perceptron(int numInputs_, float bias_,float* weights_, float (*activationFunc_)(float f)) : numInputs(numInputs_)
+template <typename T> Perceptron<T>::Perceptron(int numInputs_, T bias_, T* weights_, T (*activationFunc_)(T x)) : numInputs(numInputs_)
 {
-	weights = new float[numInputs];
+	weights = new T[numInputs];
 	this->setBias(bias_);
 	this->setWeights(weights_);
 	this->setActivationFunc(activationFunc_);
 }
 
-int Perceptron::setBias(float bias_)
+template <typename T> int Perceptron<T>::setBias(T bias_)
 {
 	bias = bias_;
+	return 0;
 }
 
-int Perceptron::setWeights(float* weights_)
+template <typename T> int Perceptron<T>::setWeights(T* weights_)
 {
 	for(int i=0; i<numInputs; i++)
 	{
@@ -33,17 +34,20 @@ int Perceptron::setWeights(float* weights_)
 	return 0;
 }
 
-int Perceptron::setActivationFunc(float (*activationFunc_)(float f))
+template <typename T> int Perceptron<T>::setActivationFunc(T (*activationFunc_)(T x))
 {
 	activationFunc = activationFunc_;
+	return 0;
 }
 
-float Perceptron::forwardProp(float* inputs)
+template <typename T> T Perceptron<T>::forwardProp(T* inputs)
 {
-	float sum = bias;
+	T sum = bias;
 	for(int i=0; i<numInputs; i++)
 	{
 		sum += inputs[i] * weights[i];
 	}
 	return activationFunc(sum);
 }
+
+template class Perceptron<float>;
