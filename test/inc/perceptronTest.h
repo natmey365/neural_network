@@ -3,10 +3,12 @@
 #ifndef PERCEPTRONTEST_H
 #define PERCEPTRONTEST_H
 
+#include <stdlib.h>
+#include <time.h>
 #include "neuralNetwork.h"
 
-float forwardProp(int numInputs, float bias, float* inputs, float* weights, float (*activationFunc)(float f));
-int   randomizeArray(int size, float* array);
+template <typename T> T forwardProp(int numInputs, T bias, T* inputs, T* weights, T (*activationFunc)(T f));
+template <typename T> int   randomizeArray(int size, T* array);
 int   main(int argc, char* argv[]);
 
 #endif
