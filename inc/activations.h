@@ -6,7 +6,6 @@
 #include <iostream>
 #include <math.h>	// tanh defined in <math.h>
 
-template <typename T>
-T sigmoid(T x);
+template <typename T> T sigmoid(T x);
 
 #endif

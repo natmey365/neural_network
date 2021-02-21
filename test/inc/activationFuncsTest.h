@@ -9,8 +9,7 @@
 
 #include "neuralNetwork.h"
 
-template <typename T>
-int compare(T x, T y);
+template <typename T> int compare(T x, T y);
 int testSigmoid();
 int main(int argc, char* argv[]);
 

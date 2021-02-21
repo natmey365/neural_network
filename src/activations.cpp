@@ -2,8 +2,7 @@
 
 #include "activations.h"
 
-template <typename T>
-T sigmoid(T x)
+template <typename T> T sigmoid(T x)
 {
 	return 1 / ( 1 + exp(-x));
 }

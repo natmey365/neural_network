@@ -2,8 +2,7 @@
 
 #include "activationFuncsTest.h"
 
-template <typename T>
-int compare(T x, T y)
+template <typename T> int compare(T x, T y)
 {
 	if(abs(x - y) < std::numeric_limits<T>::epsilon())
 		return 0;
