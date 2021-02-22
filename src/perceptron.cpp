@@ -22,12 +22,6 @@ template <typename T> Perceptron<T>::~Perceptron()
 	delete []weights;
 }
 
-template <typename T> int Perceptron<T>::setBias(T bias_)
-{
-	bias = bias_;
-	return 0;
-}
-
 template <typename T> int Perceptron<T>::setWeights(T* weights_)
 {
 	for(int i=0; i<numInputs; i++)
@@ -43,12 +37,6 @@ template <typename T> int Perceptron<T>::randomizeWeights()
 	{
 		weights[i] = ((T)rand() / RAND_MAX) - ((T)rand() / RAND_MAX);
 	}
-	return 0;
-}
-
-template <typename T> int Perceptron<T>::setActivationFunc(T (*activationFunc_)(T x))
-{
-	activationFunc = activationFunc_;
 	return 0;
 }
 
