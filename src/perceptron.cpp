@@ -17,6 +17,11 @@ template <typename T> Perceptron<T>::Perceptron(int numInputs_, T bias_, T* weig
 	this->setActivationFunc(activationFunc_);
 }
 
+template <typename T> Perceptron<T>::~Perceptron()
+{
+	delete []weights;
+}
+
 template <typename T> int Perceptron<T>::setBias(T bias_)
 {
 	bias = bias_;
