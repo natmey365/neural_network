@@ -2,9 +2,6 @@
 
 #include "perceptron.h"
 
-template <typename T> Perceptron<T>::Perceptron()
-{}
-
 template <typename T> Perceptron<T>::Perceptron(int numInputs_,                       T (*activationFunc_)(T x)) : numInputs(numInputs_)
 {
 	weights = new T[numInputs];
