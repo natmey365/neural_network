@@ -29,6 +29,7 @@ template int randomizeArray<float>(int size, float* array);
 
 int main(int argc, char* argv[])
 {
+	srand(time(NULL));
 	int retCode = 0;
 	int arrSize = 10;
 	float bias;
