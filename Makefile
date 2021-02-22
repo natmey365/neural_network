@@ -64,8 +64,8 @@ test:
 # Clean
 #=========
 clean:
+	rm -rf $(LIB) $(OBJ_DIR)
 	$(MAKE) -C $(TEST_DIR) clean
-	rm -rf $(OBJ_DIR)
 
 #======================================================
 # Testing
