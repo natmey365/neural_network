@@ -35,28 +35,27 @@ int main(int argc, char* argv[])
 	float* weights = new float[arrSize];
 	float* inputs  = new float[arrSize];
 	float  (*activationFunc)(float x) = &sigmoid;
-	float output;
 
 	// Test initialization constructor
 	bias = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
 	randomizeArray(arrSize, weights);
 	randomizeArray(arrSize, inputs);
 	Perceptron<float> initializedPerceptron(arrSize, bias, weights, activationFunc);
-	if(abs(initializedPerceptron.forwardProp(inputs) - forwardProp(arrSize, bias, inputs, weights, activationFunc)) > std::numeric_limits<float>::epsilon())
+	if(abs(initializedPerceptron.forwardProp(inputs) - forwardProp(arrSize, bias, inputs, weights, activationFunc)) > std::numeric_limits<float>::epsilon()) // These should be the same
 	{
 		std::cout << "Initialization Constructor fail!" << std::endl;
 		retCode += 1;
 	}
 
 	// Test random constructor
-	randomizeArray(arrSize, inputs);
 	Perceptron<float> randomPerceptron1(arrSize, activationFunc);
-	output = randomPerceptron1.forwardProp(inputs);
-	std::cout << "Random Output 1: " << output << std::endl;
-	randomizeArray(arrSize, inputs);
 	Perceptron<float> randomPerceptron2(arrSize, activationFunc);
-	output = randomPerceptron2.forwardProp(inputs);
-	std::cout << "Random Output 2: " << output << std::endl;
+	if(abs(randomPerceptron1.forwardProp(inputs) - randomPerceptron2.forwardProp(inputs)) < std::numeric_limits<float>::epsilon()) // These should not be the same
+	{
+		std::cout << "Random Perceptrons had matching output!" << std::endl;
+		std::cout << randomPerceptron1.forwardProp(inputs) << std::endl;
+		retCode += 1;
+	}
 
 	return retCode;
 }
