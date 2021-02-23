@@ -19,6 +19,7 @@ template <typename T> class Layer
 			{return size;}
 		int setWeights(int prevLayerSize_, int size_, T** weights);
 		int setBiases(int prevLayerSize_, T* biases);
+		int reset();
 		
 	private:
 		int size;
