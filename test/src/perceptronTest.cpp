@@ -4,8 +4,7 @@
 #include <time.h>
 #include "perceptronTest.h"
 
-template <typename T>
-T forwardProp(int numInputs, T bias, T* inputs, T* weights, T (*activationFunc)(T f))
+template <typename T> T forwardProp(int numInputs, T bias, T* inputs, T* weights, T (*activationFunc)(T f))
 {
 	T sum = bias;
 	for(int i=0; i<numInputs; i++)
@@ -16,14 +15,12 @@ T forwardProp(int numInputs, T bias, T* inputs, T* weights, T (*activationFunc)(
 }
 template float forwardProp<float>(int numInputs, float bias, float* inputs, float* weights, float (*activationFunc)(float f));
 
-template <typename T>
-int randomizeArray(int size, T* array)
+template <typename T> void randomizeArray(int size, T* array)
 {
 	for(int i=0; i<size; i++)
 	{
 		array[i] = ((T)rand() / RAND_MAX) - ((T)rand() / RAND_MAX);
 	}
-	return 0;
 }
 template int randomizeArray<float>(int size, float* array);
 
