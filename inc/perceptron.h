@@ -11,13 +11,14 @@
 template <typename T> class Perceptron
 {
 	public:
+		Perceptron() {}
 		Perceptron(int numInputs_,                       T (*activationFunc_)(T x));
 		Perceptron(int numInputs_, T bias_, T* weights_, T (*activationFunc_)(T x));
 		~Perceptron();
 
 		void setBias(T bias_) {bias = bias_;}
-		int  setWeights(T* weights_);
-		int  randomizeWeights();
+		int  setWeights(int numInputs_, T* weights_);
+		int  reset();
 		void setActivationFunc(T (*activationFunc_)(T x)) {activationFunc = activationFunc_;}
 		T    forwardProp(T* inputs_);
 

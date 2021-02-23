@@ -13,7 +13,7 @@ template <typename T> Perceptron<T>::Perceptron(int numInputs_, T bias_, T* weig
 {
 	weights = new T[numInputs];
 	this->setBias(bias_);
-	this->setWeights(weights_);
+	this->setWeights(numInputs_, weights_);
 	this->setActivationFunc(activationFunc_);
 }
 
@@ -22,17 +22,23 @@ template <typename T> Perceptron<T>::~Perceptron()
 	delete []weights;
 }
 
-template <typename T> int Perceptron<T>::setWeights(T* weights_)
+template <typename T> int Perceptron<T>::setWeights(int numInputs_, T* weights_)
 {
-	for(int i=0; i<numInputs; i++)
+	if(numInputs != numInputs_)
+		return 1;
+	else
 	{
-		weights[i] = weights_[i];
+		for(int i=0; i<numInputs; i++)
+		{
+			weights[i] = weights_[i];
+		}
+		return 0;
 	}
-	return 0;
 }
 
-template <typename T> int Perceptron<T>::randomizeWeights()
+template <typename T> int Perceptron<T>::reset()
 {
+	bias = ((T)rand() / RAND_MAX) - ((T)rand() / RAND_MAX);
 	for(int i=0; i<numInputs; i++)
 	{
 		weights[i] = ((T)rand() / RAND_MAX) - ((T)rand() / RAND_MAX);
