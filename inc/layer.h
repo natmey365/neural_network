@@ -8,25 +8,22 @@
 #include "perceptron.h"
 #include "activations.h"
 
-class Layer
+template <typename T> class Layer
 {
 	public:
-		Layer();
-		Layer(int x, int y, float (*func)(float f));
+		Layer(int x, int y, T (*activationFunc)(T x));
 		~Layer();
 
-		int         forwardProp(float* inputs);
-		float*      getOutputs();
-		int         getSize();
-		int         set(int x, int y, float (*func)(float f));
-
+		int  forwardProp(int prevLayerSize_, T* inputs, T* outputs);
+		int  getSize()
+			{return size;}
+		int setWeights(int prevLayerSize_, int size_, T** weights);
+		int setBiases(int prevLayerSize_, T* biases);
+		
 	private:
-		int         size;
-		int         prevLayerSize;
-		float**     weights;
-		float*      biases;
-		float*      outputs;
-		Perceptron<float>* perceptrons;
+		int size;
+		int prevLayerSize;
+		Perceptron<T>* perceptrons;
 };
 
 #endif
