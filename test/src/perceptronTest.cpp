@@ -54,7 +54,16 @@ int main(int argc, char* argv[])
 	if(abs(randomPerceptron1.forwardProp(inputs) - randomPerceptron2.forwardProp(inputs)) < std::numeric_limits<float>::epsilon()) // These should not be the same
 	{
 		std::cout << "Random Perceptrons had matching output!" << std::endl;
-		std::cout << randomPerceptron1.forwardProp(inputs) << std::endl;
+		retCode += 1;
+	}
+
+	// Test setting weights and bias
+	Perceptron<float> setPerceptron1(arrSize, activationFunc);
+	setPerceptron.setBias(bias);
+	setPerceptron.setWeights(arrSize, weights);
+	if(abs(setPerceptron.forwardProp(inputs) - forwardProp(arrSize, bias, inputs, weights, activationFunc)) > std::numeric_limits<float>::epsilon()) // These should be the same
+	{
+		std::cout << "setPerceptrons didn't calculate right!" << std::endl;
 		retCode += 1;
 	}
 
