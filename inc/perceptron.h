@@ -1,4 +1,4 @@
-// C++ header file defining the Neuron class
+// C++ header file defining the perceptron class
 
 #ifndef PERCEPTRON_H
 #define PERCEPTRON_H
