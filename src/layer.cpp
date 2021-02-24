@@ -37,6 +37,10 @@ template <typename T> int Layer<T>::setWeights(int prevLayerSize_, int size_, T*
 		return 1;
 	else
 	{
+		for(int i=0; i<size; i++)
+		{
+			perceptrons[i].setWeights(prevLayerSize, weights[i]);
+		}
 		return 0;
 	}
 }
@@ -47,6 +51,10 @@ template <typename T> int Layer<T>::setBiases(int prevLayerSize_, T* biases)
 		return 1;
 	else
 	{
+		for(int i=0; i<size; i++)
+		{
+			perceptrons[i].setBias(biases[i]);
+		}
 		return 0;
 	}
 }
