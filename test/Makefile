@@ -29,7 +29,12 @@ all: test
 #=========
 test: $(BINS)
 	@for test in $(BINS); do \
-		./$$test $(OPTS); \
+		./$$test $(OPTS); RC=$$?; \
+		if [ $$RC -eq 0 ]; then \
+			echo "$$test Passed!"; \
+		else \
+			echo "$$test Failed!"; \
+		fi; \
 	done
 
 #=========
