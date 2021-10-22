@@ -5,8 +5,8 @@
 
 #include "neuralNetwork.h"
 
-float forwardProp(int numInputs, float bias, float* inputs, float* weights, float (*activationFunc)(float f));
-int   randomizeArray(int size, float* array);
-int   main(int argc, char* argv[]);
+template <typename T>
+int compare(T x, T y);
+int main(int argc, char* argv[]);
 
 #endif
