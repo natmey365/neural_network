@@ -2,7 +2,7 @@
 
 #include "neuralNetwork.h"
 
-NeuralNetwork::NeuralNetwork() : numLayers(0)
+NeuralNetwork::NeuralNetwork()
 {}
 
 //                               Number of layers - input layer included
@@ -39,7 +39,7 @@ int NeuralNetwork::forwardProp(float* inputs, float* outputs)
 	{
 		layers[i].forwardProp(intermediates[i-1], intermediates[i]);
 	}
-	layers[numLayers-1].forwardProp(intermediates[numLayers-1], outputs);
+	layers[numLayers-1].forwardProp(intermediates[numLayers-3], outputs);
 	for(int i=0; i<numLayers-2; i++)
 	{
 		delete []intermediates[i];
