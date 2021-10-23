@@ -68,7 +68,6 @@ float Perceptron::forwardProp(float* inputs, float* output)
 	for(int i=0; i<numInputs; i++)
 	{
 		sum += inputs[i] * weights[i];
-		std::cout << inputs[i] << " * " << weights[i] << ", " << sum << std::endl;
 	}
 	*output = activationFunc(sum);
 	return 0;

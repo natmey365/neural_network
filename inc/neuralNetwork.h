@@ -16,7 +16,7 @@ class NeuralNetwork
 		NeuralNetwork(int x, int *shape, float (*func)(float f));
 		~NeuralNetwork();
 
-		int   forwardProp(float* _inputs, float* _outputs);
+		int   forwardProp(float* inputs, float* outputs);
 
 	private:
 		int      numLayers;
