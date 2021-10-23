@@ -1,4 +1,4 @@
-// C++ header file defining the Neuron class
+// C++ header file defining the Perceptron class
 
 #ifndef PERCEPTRON_H
 #define PERCEPTRON_H
@@ -12,14 +12,15 @@ class Perceptron
 {
 	public:
 		Perceptron();
-		Perceptron(int numInputs_,                               float (*activationFunc_)(float f));
-		Perceptron(int numInputs_, float bias_, float* weights_, float (*activationFunc_)(float f));
+		Perceptron(int _numInputs,                               float (*_activationFunc)(float f));
+		Perceptron(int _numInputs, float _bias, float* _weights, float (*_activationFunc)(float f));
 		~Perceptron();
 	
 		int   instantiateWeights();
-		int   setBias(float bias_);
-		int   setWeights(float* weights_);
-		int   setActivationFunc(float (*activationFunc_)(float f));
+		int   set(int _numInputs, float (*_activationFunc)(float f));
+		int   setBias(float _bias);
+		int   setWeights(float* _weights);
+		int   setActivationFunc(float (*_activationFunc)(float f));
 		float forwardProp(float* inputs, float* output);
 
 	private:

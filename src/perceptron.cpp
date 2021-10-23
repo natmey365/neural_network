@@ -5,20 +5,17 @@
 Perceptron::Perceptron()
 {}
 
-Perceptron::Perceptron(int numInputs_,                               float (*activationFunc_)(float f)) : numInputs(numInputs_)
+Perceptron::Perceptron(int _numInputs,                               float (*_activationFunc)(float f))
 {
-	this->instantiateWeights();
-	// todo - random weights
-	// todo - random bias
-	this->setActivationFunc(activationFunc_);
+	this->set(_numInputs, _activationFunc);
 }
 
-Perceptron::Perceptron(int numInputs_, float bias_, float* weights_, float (*activationFunc_)(float f)) : numInputs(numInputs_)
+Perceptron::Perceptron(int _numInputs, float _bias, float* _weights, float (*_activationFunc)(float f)) : numInputs(_numInputs)
 {
 	this->instantiateWeights();
-	this->setBias(bias_);
-	this->setWeights(weights_);
-	this->setActivationFunc(activationFunc_);
+	this->setBias(_bias);
+	this->setWeights(_weights);
+	this->setActivationFunc(_activationFunc);
 }
 
 Perceptron::~Perceptron()
@@ -29,25 +26,40 @@ Perceptron::~Perceptron()
 int Perceptron::instantiateWeights()
 {
 	weights = new float[numInputs];
-}
-
-int Perceptron::setBias(float bias_)
-{
-	bias = bias_;
-}
-
-int Perceptron::setWeights(float* weights_)
-{
-	for(int i=0; i<numInputs; i++)
-	{
-		weights[i] = weights_[i];
-	}
 	return 0;
 }
 
-int Perceptron::setActivationFunc(float (*activationFunc_)(float f))
+int Perceptron::set(int _numInputs, float (*_activationFunc)(float f))
 {
-	activationFunc = activationFunc_;
+	numInputs = _numInputs;
+	this->instantiateWeights();
+	this->setBias((float)rand() / RAND_MAX);
+	float tmp[numInputs];
+	for(int i=0; i<numInputs; i++)
+	{
+		tmp[i] = (float)rand() / RAND_MAX;
+	}
+	this->setWeights(tmp);
+	this->setActivationFunc(_activationFunc);
+	return 0;
+}
+
+int Perceptron::setBias(float _bias)
+{
+	bias = _bias;
+	return 0;
+}
+
+int Perceptron::setWeights(float* _weights)
+{
+	memcpy(weights, _weights, numInputs * sizeof(weights));
+	return 0;
+}
+
+int Perceptron::setActivationFunc(float (*_activationFunc)(float f))
+{
+	activationFunc = _activationFunc;
+	return 0;
 }
 
 float Perceptron::forwardProp(float* inputs, float* output)
@@ -59,4 +71,5 @@ float Perceptron::forwardProp(float* inputs, float* output)
 		std::cout << inputs[i] << " * " << weights[i] << ", " << sum << std::endl;
 	}
 	*output = activationFunc(sum);
+	return 0;
 }
