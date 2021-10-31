@@ -31,6 +31,4 @@ int main(int argc, char* argv[])
 
 	float output;
 	p.forwardProp(inputs, &output);
-
-        std::cout << "output: " << output << std::endl;
 }

@@ -15,7 +15,7 @@ BINS          := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%,$(SRC_FILES))
 # Compiler and flags
 #======================================================
 CPP            := g++
-COMPILE_FLAGS  := -Wall -I$(INC_DIR) -I../inc -L../ -l_$(LIB)
+COMPILE_FLAGS  := -Wall -I$(INC_DIR) -I../inc -L../  -l_$(LIB)
 
 #======================================================
 # Targets

@@ -34,10 +34,11 @@ int NeuralNetwork::forwardProp(float* inputs, float* outputs)
 	{
 		intermediates[i] = new float[shape[i+1]];
 	}
-	layers[0].forwardProp(inputs, intermediates[0]);
-	for(int i=1; i<numLayers-1; i++)
+	layers[1].forwardProp(inputs, intermediates[0]);
+	std::cout << intermediates[0][0] << std::endl;
+	for(int i=2; i<numLayers-1; i++)
 	{
-		layers[i].forwardProp(intermediates[i-1], intermediates[i]);
+		layers[i].forwardProp(intermediates[i-2], intermediates[i-1]);
 	}
 	layers[numLayers-1].forwardProp(intermediates[numLayers-3], outputs);
 	for(int i=0; i<numLayers-2; i++)

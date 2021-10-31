@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	for(int i=0; i<42*3; i++)
 	{
 		inputs[i] = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
-		std::cout << inputs[i] << std::endl;
+		//std::cout << inputs[i] << std::endl;
 	}
 	nn.forwardProp(inputs, &output);
 	std::cout << "output: " << output << std::endl;

@@ -35,10 +35,4 @@ int main(int argc, char* argv[])
 
 	float outputs[size];
 	l.forwardProp(inputs, outputs);
-
-	std::cout << "outputs: " << std::endl;
-	for(int i=0; i<size; i++)
-	{
-		std::cout << outputs[i] << std::endl;
-	}
 }
