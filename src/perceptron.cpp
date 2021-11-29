@@ -70,5 +70,6 @@ float Perceptron::forwardProp(float* inputs, float* output)
 		sum += inputs[i] * weights[i];
 	}
 	*output = activationFunc(sum);
+	std::cout << "neuron output: " << *output << std::endl;
 	return 0;
 }
