@@ -29,7 +29,7 @@ AR                := ar rcs
 #======================================================
 # Targets
 #======================================================
-.PHONY: clean test
+.PHONY: lib_objs test clean
 
 all: $(LIB)
 
@@ -39,7 +39,7 @@ all: $(LIB)
 lib: $(LIB)
 neural_network: $(LIB)
 
-$(LIB): lib_objs $(SRC_FILES) $(INC_FILES)
+$(LIB): $(OBJS)
 	@echo "============================================="; \
 	 echo "= Building $(LIB)             ="; \
 	 echo "============================================="
@@ -51,18 +51,12 @@ $(OBJ_DIR)/%.o: src/%.cpp inc/%.h | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $@
 
-lib_objs:
-	@echo "============================================="; \
-	 echo "= Compiling $(LIB) objects    ="; \
-	 echo "============================================="
-	$(MAKE) $(OBJS)
-
 #=========
 # Test
 #=========
-test: lib test_bins
+test: $(TST_BINS)
 	@echo "============================================="; \
-	 echo "= Compiling $(LIB) objects    ="; \
+	 echo "= Running Tests                             ="; \
 	 echo "============================================="
 	@for test in $(TST_BINS); do \
                 ./$$test $(OPTS); RC=$$?; \
@@ -72,14 +66,8 @@ test: lib test_bins
 			echo "$$test Failed!"; \
 		fi; \
 	done
-
-test_bins:
-	@echo "============================================="; \
-	 echo "= Building Tests                            ="; \
-	 echo "============================================="
-	$(MAKE) $(TST_BINS)
 		
-$(TST_BIN_DIR)/%: $(TST_SRC_DIR)/%.cpp $(TST_INC_DIR)/%.h | $(TST_BIN_DIR)
+$(TST_BIN_DIR)/%: $(TST_SRC_DIR)/%.cpp $(TST_INC_DIR)/%.h $(LIB) | $(TST_BIN_DIR)
 	$(CPP) $(TST_COMPILE_FLAGS) -o $@ $<
 
 $(TST_BIN_DIR):
