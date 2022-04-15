@@ -33,11 +33,11 @@ int Perceptron::set(int _numInputs, float (*_activationFunc)(float f))
 {
 	numInputs = _numInputs;
 	this->instantiateWeights();
-	this->setBias((float)rand() / RAND_MAX);
+	this->setBias(((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX));
 	float tmp[numInputs];
 	for(int i=0; i<numInputs; i++)
 	{
-		tmp[i] = (float)rand() / RAND_MAX;
+		tmp[i] = ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
 	}
 	this->setWeights(tmp);
 	this->setActivationFunc(_activationFunc);
@@ -70,6 +70,6 @@ float Perceptron::forwardProp(float* inputs, float* output)
 		sum += inputs[i] * weights[i];
 	}
 	*output = activationFunc(sum);
-	std::cout << "neuron output: " << *output << std::endl;
+
 	return 0;
 }
